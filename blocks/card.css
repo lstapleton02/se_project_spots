@@ -7,6 +7,7 @@
   object-fit: cover;
   display: block;
   border-radius: 8px;
+  margin-bottom:12px;
 }
 
 .card__content {
@@ -19,6 +20,7 @@
 }
 
 .card__title {
+  margin: 0;
   font-size: 20px;
   line-height: 1.2;
   text-overflow: ellipsis;
@@ -46,6 +48,7 @@
     height: 288px;
   }
   .card__title {
+    max-width: 250px;
     font-size: 16px;
     line-height: 1;
   }
