@@ -1,6 +1,10 @@
 # Project 3: Spots
 
-This project creates a gallery of posts, an avatar and profile.
+An Image sharing site.
+
+## Description
+
+This project is made so all the elements are displayed correctly on popular screen sizes. This webpage is responsive and allows users to post images.
 
 ### Overview
 
@@ -8,6 +12,8 @@ This project creates a gallery of posts, an avatar and profile.
 - Figma
 - Images
 - Deployment
+- About the Project Video
+- Future Updates
 
 **Intro**
 
@@ -19,12 +25,25 @@ This project is made so all the elements are displayed correctly on popular scre
 
 **Images**
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
-
-Good luck and have fun!
+Example of the Desktop view at 1440px:
+![Desktop View](./images/demo/Spots App 1440px.png)
+Example of the Desktop view and Name overflow at 1440px:
+![Desktop View and Name Overflow] (./images/demo/Spots App 1440px Name Overflow.png)
+Example of the Mobile Version:
+![Mobile View](./images/demo/Spots App Mobile Version.png)
 
 **Deployment**
 
 This webpage is deployed to GitHub Pages
 
-- [Deployment Link:](https://lstapleton02.github.io/se_project_spots/)
+- [Deployment Link:](https://lstapleton02.github.io/se_project_spots/) https://lstapleton02.github.io/se_project_spots/
+
+**About the Project**
+
+Please see a detailed video description about the project and my process behind the code.
+
+- [Video Link:]https://drive.google.com/file/d/1Kw_M8gi_NswcMmeINAxfW2gJAe35R-XW/view?usp=drive_link
+
+**Future Updates**
+
+Eventually will add javascript elements. Make buttons active.
