@@ -24,6 +24,7 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  border-radius: 8px;
 }
 
 .modal__close-btn {
