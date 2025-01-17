@@ -73,13 +73,16 @@
 }
 
 .modal__submit-btn {
-  width: 156px;
+  max-width: 156px;
+  width: 100%;
   padding: 18px 0;
-  background-color: black;
-  color: #fff;
+  background-color: #212121;
+  color: #fcf5e5;
   font-size: 16px;
   line-height: 1;
   border-radius: 8px;
+  border: none;
+  transition: background 0.3s;
 }
 
 @media screen and (max-width: 627px) {
