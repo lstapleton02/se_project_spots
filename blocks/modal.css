@@ -163,11 +163,8 @@ smooth opening and closing */
     top: -40px;
     right: 10px;
   }
-  .modal__image {
-    max-width: 288px;
-  }
   .modal__caption {
-    left: 16px;
+    left: 0;
   }
   .modal__label {
     margin-bottom: 24px;
@@ -177,7 +174,8 @@ smooth opening and closing */
   }
   .modal__image {
     width: 100%;
+    max-width: 288px;
     border-radius: 4px;
-    margin: 0 16px;
+    margin: 0;
   }
 }
