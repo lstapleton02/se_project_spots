@@ -47,6 +47,7 @@ const editModalDescriptionInput = editModal.querySelector(
 //Card Modal Elements
 const cardModal = document.querySelector("#add-card-modal");
 const cardForm = cardModal.querySelector(".modal__form");
+const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn");
 const cardModalBtn = document.querySelector(".profile__add-btn");
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
@@ -112,6 +113,11 @@ function closeModal(modal) {
 editModalButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
+  resetValidation(
+    editFormElement,
+    [editModalNameInput, editModalDescriptionInput],
+    settings
+  );
   openModal(editModal);
 });
 //profileEditButton.addEventListener("click", openModal);
@@ -137,9 +143,10 @@ function handleAddCardSubmit(evt) {
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
-  closeModal(cardModal);
-
   evt.target.reset();
+  disableButton(cardSubmitBtn, settings);
+
+  closeModal(cardModal);
 }
 
 // Connect the handler to the form, so it will watch for the submit event.

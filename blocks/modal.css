@@ -36,8 +36,6 @@
   position: relative;
 }
 
-/* finish styling, make adaptaive
-smooth opening and closing */
 .modal__container_type_preview {
   padding: 16px;
   background-color: transparent;
@@ -123,11 +121,25 @@ smooth opening and closing */
   font-weight: 500;
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 8px;
+  margin-bottom: 0;
 }
 
 .modal__input::placeholder {
   color: #212121;
   opacity: 0.3;
+}
+
+.modal__input_type_error {
+  border: 1px solid rgba(255, 0, 0, 0.6);
+}
+
+.modal__error {
+  display: block;
+  color: #ff0000;
+  opacity: 0.7;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.1;
 }
 
 .modal__submit-btn {
@@ -142,6 +154,11 @@ smooth opening and closing */
   border: none;
   transition: background 0.3s;
   cursor: pointer;
+}
+
+.modal__btn_disabled {
+  opacity: 0.5;
+  cursor: none;
 }
 
 @media screen and (max-width: 627px) {
