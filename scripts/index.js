@@ -29,6 +29,11 @@ const initialCards = [
   },
 ];
 
+const modals = document.getElementsByClassName("modal");
+const pageAll = document.querySelector(".page-all");
+const modalContainer = document.querySelector(".modal__container");
+const modalContainerImg = document.querySelector(".modal__image-container");
+
 //Profile Elements
 //const profileEditButton = document.querySelector(".profile__edit-btn");
 const editModalButton = document.querySelector(".profile__edit-btn");
@@ -88,7 +93,7 @@ function getCardElement(data) {
   });
 
   //event handler open and close the preview mode of each image
-  cardImage.addEventListener("click", () => {
+  cardImage.addEventListener("click", (modal) => {
     openModal(previewModal);
 
     previewModalImgEl.src = cardImage.src;
@@ -104,11 +109,85 @@ function openModal(modal) {
   //editModalNameInput.value = profileName.textContent;
   //editModalDescriptionInput.value = profileDescription.textContent;
   modal.classList.add("modal_opened");
+  handleEscKey(modal);
+  //handleClickOutside(modal);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
+
+//handle close with esc
+function handleEscKey(modal) {
+  document.addEventListener("keydown", function (evt) {
+    if (evt.key === "Escape" || evt.keyCode === 27) {
+      closeModal(modal);
+      evt.preventDefault();
+    }
+  });
+}
+
+const myElement = document.getElementsByClassName(
+  "modal_container modal__image-container"
+);
+document.addEventListener("dblclick", function () {
+  console.log("clicked");
+});
+
+const overlay = document.getElementsByClassName("modal");
+
+document.addEventListener("click", function (event) {
+  if (!overlay.contains(event.target) && event.target !== overlay) {
+    event.stopPropagation();
+    closeModal(overlay);
+  }
+});
+
+/*
+function isClickInsideElement(event, element) {
+  const rect = element.getBoundingClientRect();
+  return (
+    event.clientX >= rect.left &&
+    event.clientX <= rect.right &&
+    event.clientY >= rect.top &&
+    event.clientY <= rect.bottom
+  );
+}
+
+document.addEventListener("click", function (event) {
+  const myElement = document.getElementsByClassName(
+    "modal_container modal__image-container"
+  );
+
+  if (isClickInsideElement(event, myElement)) {
+    // Click inside the element
+    console.log("Clicked inside the element");
+  } else {
+    // Click outside the element
+    console.log("Clicked outside the element");
+  }
+});
+
+/*
+//handle close with click outside
+function handleClickOutside(modal) {
+  modalContainer.addEventListener("click", function (evt) {
+    if (evt.target !== modalContainer) {
+      closeModal(modal);
+      evt.preventDefault();
+    }
+  });
+}
+
+
+//close modal with click outside
+document.addEventListener("click", function (event, modal) {
+  if (pageAll.contains(event.target) && event.target !== modals) {
+    closeModal(modal);
+  }
+});
+
+*/
 
 editModalButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
@@ -172,15 +251,3 @@ initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
   cardsList.prepend(cardElement);
 });
-
-/*
-// Find all close buttons
-const closeButtons = document.querySelectorAll(".modal__close-btn");
-
-closeButtons.forEach((button) => {
-  // Find the closest popup only once
-  const popup = button.closest(".modal");
-  // Set the listener
-  button.addEventListener("click", () => closePopup(popup));
-});
-*/
