@@ -29,13 +29,14 @@ const initialCards = [
   },
 ];
 
+/*
 const modals = document.getElementsByClassName("modal");
 const pageAll = document.querySelector(".page-all");
 const modalContainer = document.querySelector(".modal__container");
 const modalContainerImg = document.querySelector(".modal__image-container");
+*/
 
 //Profile Elements
-//const profileEditButton = document.querySelector(".profile__edit-btn");
 const editModalButton = document.querySelector(".profile__edit-btn");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -104,90 +105,30 @@ function getCardElement(data) {
   return cardElement;
 }
 
-//Open and close the Edit profile Modal
 function openModal(modal) {
-  //editModalNameInput.value = profileName.textContent;
-  //editModalDescriptionInput.value = profileDescription.textContent;
   modal.classList.add("modal_opened");
-  handleEscKey(modal);
-  //handleClickOutside(modal);
+  document.addEventListener("keydown", closeModalEsc);
+  modal.addEventListener("mousedown", closeModalOverlay);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalEsc);
+  modal.removeEventListener("mousedown", closeModalOverlay);
 }
 
-//handle close with esc
-function handleEscKey(modal) {
-  document.addEventListener("keydown", function (evt) {
-    if (evt.key === "Escape" || evt.keyCode === 27) {
-      closeModal(modal);
-      evt.preventDefault();
-    }
-  });
-}
-
-const myElement = document.getElementsByClassName(
-  "modal_container modal__image-container"
-);
-document.addEventListener("dblclick", function () {
-  console.log("clicked");
-});
-
-const overlay = document.getElementsByClassName("modal");
-
-document.addEventListener("click", function (event) {
-  if (!overlay.contains(event.target) && event.target !== overlay) {
-    event.stopPropagation();
-    closeModal(overlay);
+function closeModalEsc(event) {
+  if (event.key === "Escape") {
+    const modalOpened = document.querySelector(".modal_opened");
+    closeModal(modalOpened);
   }
-});
-
-/*
-function isClickInsideElement(event, element) {
-  const rect = element.getBoundingClientRect();
-  return (
-    event.clientX >= rect.left &&
-    event.clientX <= rect.right &&
-    event.clientY >= rect.top &&
-    event.clientY <= rect.bottom
-  );
 }
 
-document.addEventListener("click", function (event) {
-  const myElement = document.getElementsByClassName(
-    "modal_container modal__image-container"
-  );
-
-  if (isClickInsideElement(event, myElement)) {
-    // Click inside the element
-    console.log("Clicked inside the element");
-  } else {
-    // Click outside the element
-    console.log("Clicked outside the element");
+function closeModalOverlay(event) {
+  if (event.target.classList.contains("modal_opened")) {
+    closeModal(event.target);
   }
-});
-
-/*
-//handle close with click outside
-function handleClickOutside(modal) {
-  modalContainer.addEventListener("click", function (evt) {
-    if (evt.target !== modalContainer) {
-      closeModal(modal);
-      evt.preventDefault();
-    }
-  });
 }
-
-
-//close modal with click outside
-document.addEventListener("click", function (event, modal) {
-  if (pageAll.contains(event.target) && event.target !== modals) {
-    closeModal(modal);
-  }
-});
-
-*/
 
 editModalButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
@@ -199,7 +140,7 @@ editModalButton.addEventListener("click", () => {
   );
   openModal(editModal);
 });
-//profileEditButton.addEventListener("click", openModal);
+
 editModalCloseBtn.addEventListener("click", () => {
   closeModal(editModal);
 });
