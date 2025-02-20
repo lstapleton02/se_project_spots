@@ -164,7 +164,6 @@ function handleAddCardSubmit(evt) {
   cardsList.prepend(cardElement);
 
   evt.target.reset();
-  disableButton(cardSubmitBtn, settings);
 
   closeModal(cardModal);
 }
