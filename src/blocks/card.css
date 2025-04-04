@@ -1,4 +1,5 @@
 .card {
+  max-width: 413px;
 }
 
 .card__image {
@@ -82,7 +83,7 @@
   .card__title {
     max-width: 250px;
     font-size: 16px;
-    line-height: 1;
+    line-height: 1.2;
   }
   .card__delete-btn {
     top: 11%;
