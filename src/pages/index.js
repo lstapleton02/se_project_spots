@@ -62,24 +62,28 @@ const api = new Api({
   },
 });
 
-api.getAppInfo().then(([userInfo, cards]) => {
-  /*console.log("Full userInfo object:", userInfo);
+api
+  .getAppInfo()
+  .then(([userInfo, cards]) => {
+    /*console.log("Full userInfo object:", userInfo);
   console.log("Avatar URL specifically:", userInfo.avatar);
 
   if (!Array.isArray(cards)) {
     console.log("Cards is not an array:", typeof cards);
     return;
   }*/
-  cards.forEach((item) => {
-    const cardElement = getCardElement(item);
-    cardsList.prepend(cardElement);
-  });
+    cards.forEach((item) => {
+      const cardElement = getCardElement(item);
+      cardsList.prepend(cardElement);
+    });
 
-  profileAvatar.src = userInfo.avatar;
-  console.log("Avatar src after update:", profileAvatar.src);
-  profileName.textContent = userInfo.name;
-  profileDescription.textContent = userInfo.about;
-});
+    const { about, avatar, name } = userInfo;
+
+    profileAvatar.src = userInfo.avatar;
+    profileName.textContent = userInfo.name;
+    profileDescription.textContent = userInfo.about;
+  })
+  .catch(console.error);
 
 // Modal Form Elements
 const editModal = document.querySelector("#edit-modal");
