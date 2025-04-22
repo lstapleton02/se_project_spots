@@ -98,6 +98,12 @@
   opacity: 1;
 }
 
+.modal__close-btn_type_delete {
+  top: -12px;
+  right: -36px;
+  opacity: 1;
+}
+
 .modal__caption {
   background-color: #212121;
   margin: 0 0 32px;
