@@ -157,7 +157,7 @@ const setEventListeners = (formElement, config) => {
   );
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
   toggleButtonState(inputList, buttonElement, config);
-  formElement.addEventListener("submit", () => {
+  formElement.addEventListener("reset", () => {
     disableButton(buttonElement, config);
   });
   inputList.forEach((inputElement) => {

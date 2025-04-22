@@ -95,7 +95,7 @@ const editModalNameInput = editModal.querySelector("#profile-name-input");
 const editModalDescription = editModal.querySelector(
   "#profile-description-input"
 );
-const modalSubmitButton = editModal.querySelector("modal__submit-btn");
+const modalSubmitButton = editModal.querySelector(".modal__submit-btn");
 
 //Card related elements
 const cardTemplate = document.querySelector("#card-template");
@@ -188,12 +188,17 @@ function handleEditFormSubmit(evt) {
       about: jobInput.value,
     })
     .then((data) => {
-      profileName.textContent = data.name;
-      profileDescription.textContent = data.about;
-      evt.target.reset();
-      closeModal(editModal);
+      if (data) {
+        // Add this check
+        profileName.textContent = nameInput.value;
+        profileDescription.textContent = jobInput.value;
+        evt.target.reset();
+        closeModal(editModal);
+      }
     })
-    .catch(console.error)
+    .catch((err) => {
+      console.error("Error updating profile:", err); // More detailed error logging
+    })
     .finally(() => {
       setButtonText(profileSubmitButton, false, "Save", "Saving...");
     });
@@ -218,23 +223,30 @@ function handleAvatarSubmit(evt) {
 }
 
 function handlePostCard(evt) {
-  evt.preventDefault();
-  const postCardSubmitBtn = evt.submitter;
-  setButtonText(postCardSubmitBtn, true);
-
+  renderLoading(true, cardAddSubmitButton);
   api
-    .postCard({ name: newPostCaption.value, link: newPostImageLink.value })
-    .then((data) => {
-      const newCard = getCardElement(data);
-
-      cardsList.prepend(newCard);
-
-      closeModal(addCardModal);
-      evt.target.reset();
+    .postCard(data)
+    .then((cardData) => {
+      cardSection.addItem(createCard(cardData));
+      cardAddForm.reset();
+      cardAddModal.close();
     })
-    .catch(console.error)
+    .catch((err) => {
+      // More specific error handling
+      if (err.includes("400")) {
+        console.error("Error: Invalid data submitted for new card");
+        // Optionally show user-friendly error message
+        // Example: showErrorMessage("Please check the card details and try again");
+      } else if (err.includes("401")) {
+        console.error("Error: Authorization required");
+        // Example: showErrorMessage("Please log in again");
+      } else {
+        console.error(`Error adding card: ${err}`);
+        // Example: showErrorMessage("Unable to add card. Please try again later");
+      }
+    })
     .finally(() => {
-      setButtonText(postCardSubmitBtn, false, "Save", "Saving...");
+      renderLoading(false, cardAddSubmitButton);
     });
 }
 /*
