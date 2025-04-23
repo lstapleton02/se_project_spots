@@ -99,6 +99,7 @@
 }
 
 .modal__close-btn_type_delete {
+  background-image: url(../images/close-light.svg);
   top: -12px;
   right: -36px;
   opacity: 1;

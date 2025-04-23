@@ -221,7 +221,7 @@ function handleAvatarSubmit(evt) {
       setButtonText(avatarSubmitButton, false, "Save", "Saving...");
     });
 }
-
+/*
 function handlePostCard(evt) {
   renderLoading(true, cardAddSubmitButton);
   api
@@ -249,7 +249,7 @@ function handlePostCard(evt) {
       renderLoading(false, cardAddSubmitButton);
     });
 }
-/*
+*/
 function handlePostCard(evt) {
   evt.preventDefault();
   const postCardSubmitBtn = evt.submitter;
@@ -269,7 +269,7 @@ function handlePostCard(evt) {
     .finally(() => {
       setButtonText(postCardSubmitBtn, false, "Save", "Saving...");
     });
-}*/
+}
 
 function handleLike(evt, cardId) {
   evt.preventDefault();
